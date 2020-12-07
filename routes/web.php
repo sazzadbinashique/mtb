@@ -17,9 +17,11 @@ Auth::routes();
 
 
 Route::group(['middleware' => 'auth'], function () {
-    // Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/admin', 'HomeController@dashboard')->name('dashboard');
+    Route::get('users/profile', 'UserController@profile')->name('users.profile');
     Route::resource('categories', 'CategoryController');
+    Route::resource('users', 'UserController');
     
 });
 

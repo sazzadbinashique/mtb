@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use Session;
+use App\Http\Requests\category\StoreCategoryRequest;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -16,7 +18,7 @@ class CategoryController extends Controller
     {
         $category= Category::all();
 
-        return view('categories.index', compact('category'));
+        return view('admin.categories.index', compact('category'));
     }
 
     /**
@@ -26,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -35,9 +37,15 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(StoreCategoryRequest $request)
+    { 
+    
+        $category = new Category();
+        $category->name =$request->name;
+        $category->save();
+
+        Session::flash('success', 'Cetegory has been Created Successfully');
+        return redirect('/categories');
     }
 
     /**
@@ -59,8 +67,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-
-        return view('categories.edit');   
+    
+        return view('admin.categories.edit', compact('category') );   
 
     }
 
@@ -71,9 +79,15 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(StoreCategoryRequest $request, Category $category)
     {
-        //
+    
+        $category->name = $request->name;
+        $category->update();
+
+        Session::flash('success', 'Category has been updated Successfully');
+        
+        return redirect('/categories');
     }
 
     /**
