@@ -37,10 +37,10 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
 
-            @include('layouts.header')    
+            @include('backend.partials.header')    
 
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            @include('layouts.sidebar')
+            @include('backend.partials.sidebar')
             <!-- /.navbar-collapse -->
         </nav>
 

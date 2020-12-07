@@ -11,16 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'FrontendController@index')->name('frontpage');
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
 
+Route::group(['middleware' => 'auth'], function () {
+    // Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/admin', 'HomeController@dashboard')->name('dashboard');
+    Route::resource('categories', 'CategoryController');
+    
+});
 
-Route::get('/admin', 'HomeController@dashboard')->name('dashboard');
-
-
-Route::resource('categories', 'CategoryController');

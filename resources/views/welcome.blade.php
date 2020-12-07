@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-6 col-lg-3 d-none d-lg-block">
                         <div class=" logo-area">
-                            <a class="img-responsive" href="index.html"><img src="{{asset('image/logo.png')}}" alt=""></a>
+                            <a class="img-responsive" href="{{url('/')}}"><img src="{{asset('image/logo.png')}}" alt=""></a>
                         </div>
                     </div>
                     <div class="col-12 col-lg-9 menu-area" >
